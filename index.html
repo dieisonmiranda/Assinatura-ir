@@ -26,7 +26,6 @@
             src: url('Archivo/static/Archivo-medium.ttf');
         }
           
-
         body {
             width: 100%;
             height: 100%;
@@ -55,7 +54,7 @@
             right: 100px;
             padding: 5px;
             
-        }     
+        }    
 
         label, input {
             display: block;
@@ -64,13 +63,13 @@
         }
 
         #tabela {
-        background-image: url("1710.png");
-        background-size: auto; /* Preserva a proporção da imagem e a ajusta dentro da div */
-        color: #002469;
-        width: 875px;
-        height: 292px;
-        font-size: 18px;
-        font-family: 'Archivo-bold';
+            background-image: url("1710.png");
+            background-size: auto; /* Preserva a proporção da imagem e a ajusta dentro da div */
+            color: #002469;
+            width: 875px;
+            height: 292px;
+            font-size: 18px;
+            font-family: 'Archivo-bold';
         }
 
         #for_telefone,#for_celular{
@@ -100,11 +99,11 @@
         }
 
        .numeros {
-        font-size: 18px;
-        vertical-align: -webkit-baseline-middle;
-        display: none;
-        font-family: 'Archivo-medium';
-               }
+            font-size: 18px;
+            vertical-align: -webkit-baseline-middle;
+            display: none;
+            font-family: 'Archivo-medium';
+        }
 
        #tdDados{
             width: 386px;
@@ -114,12 +113,12 @@
             height:290px;
             margin-left: 40px;
             margin-top: 11px;
-	    padding: 2px;
-            }
+            padding: 2px;
+        }
         #fieldsetformulario{
             margin-top: 5%;
-	    border:none;
-            }
+            border:none;
+        }
               
     </style>
 </head>
@@ -127,20 +126,28 @@
     <div id="areaImagem">
         <div id="formulario">
             <fieldset id="fieldsetformulario">
-                    <form action="" method="post">
+                <form action="" method="post">
                     <label id="titlenome" for="for_nome">Nome:</label>
                     <input id="for_nome" type="text" style="display: inline-block;" oninput="alterarValor('for_nome');ajustarTexto('for_nome', 36)">
+                    
                     <label id="titlenome" for="for_cargo">Cargo:</label>
                     <input id="for_cargo" type="text" style="display: inline-block;" oninput="alterarValor('for_cargo');ajustarTexto('for_cargo', 24)">
+                    
                     <label for="for_celular">Telefone Móvel:</label>
                     <input type="tel" name="Celular" id="for_celular" style="display: inline-block;font-family: 'Archivo', sans-serif;" oninput="formatarCelular(this);alterarValor('for_celular');imagemcelular('imgtelefone')">
+                    
                     <label for="for_telefone">Telefone Fixo:</label>
                     <input type="tel" name="telefone" id="for_telefone" style="font-family: 'Archivo', sans-serif;" oninput="formatarTelefone(this);alterarValor('for_telefone');imagemcelular('imgtelefone')">
+                    
+                    <label for="for_texto_filial">Nome da Filial:</label>
+                    <input id="for_texto_filial" type="text" style="display: inline-block; font-family: 'Archivo', sans-serif;" oninput="alterarValor('for_texto_filial')">
+                    
                     <label for="for_filial">Empresa:</label>
                     <select name="filial" id="for_filial" oninput="alterarFilial()">
                         <option value="Irapuru">Irapuru</option>
                         <option value="EVR">EVR</option>
                     </select>
+                    
                     <button class="btn btn-outline-danger" id="btndownload" onclick="event.preventDefault();download('tabela','for_nome')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 15">
                             <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"></path>
@@ -161,17 +168,19 @@
                                 <p style="font-family: Archivo-bold;font-size: 36px;margin: 0%;height: 30px;white-space: nowrap;align-content: end;" id="for_nome"></p>
                                 <p style="font-family: Archivo-light;font-size: 24px;margin-top: 8px;white-space: nowrap;align-content: end;" id="for_cargo"></p>
                             </div>
-                            <!-- <img class="numeros" id="imgcelular" style="max-width: 19px; margin: 0px;" src="whats.png" alt=""> -->
+                            
                             <div id="CelularTelefone">
                                 <img class="numeros" id="imgtelefone" style="max-width: 32px; margin: 0px;" src="fnv.png" alt="">
                                 <p class="numeros" id="for_telefone" style="margin: 0%;"></p>
                                 <p class="numeros" id="for_celular" style="margin: 0%;"></p>
                             </div>
+                            
+                            <p id="for_texto_filial" style="margin: 0; font-family: 'Archivo-medium'; font-size: 18px; margin-top: 28px; text-align: center;"></p>
+                            
                         </td>
                     </tr>
                 </tbody>
             </table>
-            
         </fieldset>
     </div>
 </body>
@@ -192,15 +201,12 @@
             document.getElementById('tdDados').style.width = '386px'
             document.getElementById('tabela').style.color = '#002469'
             document.querySelector("table #for_cargo").style.marginTop = '8px'
-            // document.querySelector("table #for_cargo").style.fontSize = '24px'
             document.querySelector("table #for_cargo").style.color = '#002469'
             document.querySelector("#NomeCargo").style.marginTop = '42px'
             document.querySelector("#NomeCargo").style.marginLeft = '0.5px'
-            // document.querySelector("table #for_nome").style.fontSize = '36px'
             document.querySelector("#CelularTelefone").style.marginTop = '33px'
             document.querySelector("table #for_celular").style.fontSize = '18px'
             document.querySelector("table #for_telefone").style.fontSize = '18px'
-            
             break;
             
         case 'EVR':
@@ -214,71 +220,54 @@
             document.getElementById('imgtelefone').style.maxWidth = "36px"
             document.getElementById('tdDados').style.width = '478px'
             document.querySelector("table #for_cargo").style.color = 'black'
-            //document.querySelector("table #for_cargo").style.marginTop = '5.5px'
-            //document.querySelector("table #for_cargo").style.fontSize = '20.5px'
             document.querySelector("#NomeCargo").style.marginTop = '52px'
-            //document.querySelector("#NomeCargo").style.marginLeft = '2px'
-            //document.querySelector("table #for_cargo").style.marginLeft = '0px'
-            //document.querySelector("table #for_nome").style.fontSize = '36px'
-            //document.querySelector("#CelularTelefone").style.marginTop = '35px'
             document.querySelector("#CelularTelefone").style.marginLeft = '0px'
-            //document.querySelector("table #for_celular").style.fontSize = '18px'
-            //document.querySelector("table #for_telefone").style.fontSize = '18px'
             document.querySelector("table #for_celular").style.fontFamily = 'Archivo-medium'
             document.querySelector("table #for_telefone").style.fontFamily = 'Archivo-medium'
             break;
-
-            }  
-        
+        }  
     }
 
     function imagemcelular(idtable) {
-    
-    var imagem= document.querySelector("table #"+idtable)
-    var celdigitado = document.querySelector("form #for_celular").value
-    var teldigitado = document.querySelector("form #for_telefone").value
-    var telefone = document.querySelector("table #for_telefone");
-    var celular = document.querySelector("table #for_celular");
+        var imagem= document.querySelector("table #"+idtable)
+        var celdigitado = document.querySelector("form #for_celular").value
+        var teldigitado = document.querySelector("form #for_telefone").value
+        var telefone = document.querySelector("table #for_telefone");
+        var celular = document.querySelector("table #for_celular");
 
-    if (celdigitado || teldigitado) {
-        imagem.style.display = 'inline-flex'
-        celular.style.paddingLeft = '5px';        
-        
-    } else {
-        imagem.style.display = 'none'
-    }
+        if (celdigitado || teldigitado) {
+            imagem.style.display = 'inline-flex'
+            celular.style.paddingLeft = '5px';        
+        } else {
+            imagem.style.display = 'none'
+        }
 
+        if (celdigitado && teldigitado) {
+            telefone.style.paddingLeft = '5px';
+            telefone.style.marginRight = '10px';
+            celular.style.paddingLeft = '10px';
+            document.querySelector("table #for_celular").innerHTML = celdigitado;
+            document.querySelector("table #for_telefone").innerHTML = teldigitado;
+        } else {
+            telefone.style.paddingLeft = '0';
+            telefone.style.marginRight = '0';
+            celular.style.paddingLeft = '0';
+        }
 
-    if (celdigitado && teldigitado) {
-        telefone.style.paddingLeft = '5px';
-        telefone.style.marginRight = '10px';
-        celular.style.paddingLeft = '10px';
-        document.querySelector("table #for_celular").innerHTML = celdigitado;
-        document.querySelector("table #for_telefone").innerHTML = teldigitado;
-    } else {
-        telefone.style.paddingLeft = '0';
-        telefone.style.marginRight = '0';
-        celular.style.paddingLeft = '0';
-    }
+        if (!celdigitado && teldigitado) {
+            document.querySelector("table #for_celular").innerHTML = teldigitado;
+            document.querySelector("table #for_telefone").innerHTML = '';
+        } 
 
-    if (!celdigitado && teldigitado) {
-        document.querySelector("table #for_celular").innerHTML = teldigitado;
-        document.querySelector("table #for_telefone").innerHTML = '';
-        
-    } 
-
-    if (!celdigitado && !teldigitado) {
-        document.querySelector("table #for_celular").innerHTML = '';
-        document.querySelector("table #for_telefone").innerHTML = '';
-    }
-
+        if (!celdigitado && !teldigitado) {
+            document.querySelector("table #for_celular").innerHTML = '';
+            document.querySelector("table #for_telefone").innerHTML = '';
+        }
     }
 
     function alterarValor(valor) {
-    var novoTexto = document.querySelector("form #"+valor).value
-    document.querySelector("table #"+valor).innerHTML = novoTexto
-    
-
+        var novoTexto = document.querySelector("form #"+valor).value
+        document.querySelector("table #"+valor).innerHTML = novoTexto
     }
 
 
@@ -288,20 +277,16 @@
         var filial = document.getElementById("for_filial");
         var selectedOption = filial.options[filial.selectedIndex].value;
 
-
         html2canvas(tabela, { scale: 1, width: 875, height: 292 }).then((canvas) => {
-            
             var image = canvas.toDataURL("image/png", 1.0); // Converte o canvas em uma imagem JPEG com qualidade 1.0 (máxima)
-
             var link = document.createElement("a");
             link.href = image;
             link.download = nome + ".png";
             link.click();
         });
-        }
+    }
 
     function formatarCelular(input) {
-
         let digitos = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
         
         if (digitos.length == 0) {
@@ -317,6 +302,7 @@
             input.value += '-' + digitos.substring(7, 11);
         }
     }
+
     function formatarTelefone(input) {
         let digitos = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
 
@@ -333,11 +319,12 @@
             input.value += '-' + digitos.substring(6, 10);
         }
     }
+
     function alterarFont(formId,TableId) {
         var fontvalor = document.getElementById(formId).value
         document.querySelector("table #" + TableId).style.fontSize = fontvalor + 'px'
-
     }
+
     function ajustarTexto(id, tamanhofonte) {
         var caixa = document.querySelector("table #" + id);
         var fontSize = tamanhofonte; // Tamanho inicial da fonte
