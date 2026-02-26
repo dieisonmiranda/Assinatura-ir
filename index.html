@@ -47,28 +47,26 @@
             margin: 10px;
         }
 
-        /* AJUSTES AQUI PARA O TAMANHO DO FORMULÁRIO */
         #formulario {
             color: white;
             background-color: rgb(112,124,124);
             position: absolute;
             right: 100px;
-            top: 8px; /* Centraliza verticalmente com a imagem */
+            top: 8px; 
             padding: 12px 20px;
-            width: 250px; /* Largura fixa para manter proporção */
-            height: 275px; /* Altura exata solicitada */
+            width: 250px; 
+            height: 275px; 
             box-sizing: border-box;
-            border-radius: 8px; /* Cantos arredondados (opcional, deixa mais limpo) */
+            border-radius: 8px; 
         }    
 
         #fieldsetformulario {
             margin-top: 0;
             padding: 0;
             border: none;
-            height: 100%; /* Ocupa toda a altura da caixa */
+            height: 100%; 
         }
 
-        /* Transforma o form num Flexbox para distribuir o espaço internamente */
         #fieldsetformulario form {
             height: 100%;
             display: flex;
@@ -79,7 +77,7 @@
         label {
             display: block;
             margin-bottom: 0px;
-            font-size: 13px; /* Tamanho reduzido para caber melhor */
+            font-size: 13px; 
         }
 
         input, select {
@@ -87,7 +85,7 @@
             margin-bottom: 2px;
             font-size: 13px;
             padding: 4px 6px;
-            width: 100%; /* Faz a caixa ocupar toda a largura */
+            width: 100%; 
             box-sizing: border-box;
             font-family: 'Archivo', sans-serif;
             border-radius: 4px;
@@ -96,7 +94,7 @@
 
         #btndownload {
             margin-top: 5px;
-            align-self: center; /* Centraliza o botão dentro da caixa flex */
+            align-self: center; 
             cursor: pointer;
             padding: 5px 15px;
         }
@@ -122,7 +120,7 @@
 
         #NomeCargo{
             width: 380px;
-            height: 60px;
+            height: auto; 
             margin-top: 65px; 
             margin-left: 0.5px;
         }
@@ -130,7 +128,7 @@
         #CelularTelefone{
             width: 100%; 
             height: 40px;
-            margin-top: 55px; 
+            margin-top: 40px; 
             display: flex; 
             justify-content: flex-start; 
             align-items: center; 
@@ -201,7 +199,10 @@
                         <td style="vertical-align: top;" id="tdDados">
                             <div id="NomeCargo">
                                 <p style="font-family: Archivo-bold;font-size: 36px;margin: 0%;height: 30px;white-space: nowrap;align-content: end;" id="for_nome"></p>
-                                <p style="font-family: Archivo-light;font-size: 24px;margin-top: 8px;white-space: nowrap;align-content: end;" id="for_cargo"></p>
+                                
+                                <p style="font-family: Archivo-light;font-size: 24px;margin: 0; margin-top: 8px; line-height: 1; white-space: nowrap;align-content: end;" id="for_cargo"></p>
+                                
+                                <p id="for_texto_filial" style="margin: 0; font-family: 'Archivo-bold'; font-size: 17px; line-height: 1; margin-top: 0px; text-align: left;"></p>
                             </div>
                             
                             <div id="CelularTelefone">
@@ -209,9 +210,6 @@
                                 <p class="numeros" id="for_telefone" style="margin: 0%;"></p>
                                 <p class="numeros" id="for_celular" style="margin: 0%;"></p>
                             </div>
-                            
-                            <p id="for_texto_filial" style="margin: 0; font-family: 'Archivo-bold'; font-size: 22px; margin-top: 0px; text-align: left;"></p>
-                            
                         </td>
                     </tr>
                 </tbody>
@@ -239,7 +237,7 @@
             document.querySelector("table #for_cargo").style.color = '#002469'
             document.querySelector("#NomeCargo").style.marginTop = '65px' 
             document.querySelector("#NomeCargo").style.marginLeft = '0.5px'
-            document.querySelector("#CelularTelefone").style.marginTop = '55px' 
+            document.querySelector("#CelularTelefone").style.marginTop = '15px' 
             document.querySelector("table #for_celular").style.fontSize = '18px'
             document.querySelector("table #for_telefone").style.fontSize = '18px'
             break;
@@ -372,4 +370,5 @@
     }
 </script>
 </html>
+
 
