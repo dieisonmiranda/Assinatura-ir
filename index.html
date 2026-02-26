@@ -47,24 +47,63 @@
             margin: 10px;
         }
 
+        /* AJUSTES AQUI PARA O TAMANHO DO FORMULÁRIO */
         #formulario {
-            color: white(0, 0, 0);
+            color: white;
             background-color: rgb(112,124,124);
             position: absolute;
             right: 100px;
-            padding: 5px;
-            
+            top: 8px; /* Centraliza verticalmente com a imagem */
+            padding: 12px 20px;
+            width: 250px; /* Largura fixa para manter proporção */
+            height: 275px; /* Altura exata solicitada */
+            box-sizing: border-box;
+            border-radius: 8px; /* Cantos arredondados (opcional, deixa mais limpo) */
         }    
 
-        label, input {
+        #fieldsetformulario {
+            margin-top: 0;
+            padding: 0;
+            border: none;
+            height: 100%; /* Ocupa toda a altura da caixa */
+        }
+
+        /* Transforma o form num Flexbox para distribuir o espaço internamente */
+        #fieldsetformulario form {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        label {
             display: block;
-            margin-bottom: 7px;
-            font-size: 15px;
+            margin-bottom: 0px;
+            font-size: 13px; /* Tamanho reduzido para caber melhor */
+        }
+
+        input, select {
+            display: block;
+            margin-bottom: 2px;
+            font-size: 13px;
+            padding: 4px 6px;
+            width: 100%; /* Faz a caixa ocupar toda a largura */
+            box-sizing: border-box;
+            font-family: 'Archivo', sans-serif;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        #btndownload {
+            margin-top: 5px;
+            align-self: center; /* Centraliza o botão dentro da caixa flex */
+            cursor: pointer;
+            padding: 5px 15px;
         }
 
         #tabela {
             background-image: url("1710.png");
-            background-size: auto; /* Preserva a proporção da imagem e a ajusta dentro da div */
+            background-size: auto; 
             color: #002469;
             width: 875px;
             height: 292px;
@@ -84,18 +123,17 @@
         #NomeCargo{
             width: 380px;
             height: 60px;
-            margin-top: 42px;
+            margin-top: 65px; 
             margin-left: 0.5px;
         }
 
         #CelularTelefone{
-            width: 343px;
+            width: 100%; 
             height: 40px;
-            margin-top: 33px;
-        }
-
-        #btndownload {
-            margin-left: 60px;
+            margin-top: 55px; 
+            display: flex; 
+            justify-content: flex-start; 
+            align-items: center; 
         }
 
        .numeros {
@@ -108,16 +146,13 @@
        #tdDados{
             width: 386px;
         }
+        
         #fieldsetimagem{
             width:875px;
             height:290px;
             margin-left: 40px;
             margin-top: 11px;
             padding: 2px;
-        }
-        #fieldsetformulario{
-            margin-top: 5%;
-            border:none;
         }
               
     </style>
@@ -128,19 +163,19 @@
             <fieldset id="fieldsetformulario">
                 <form action="" method="post">
                     <label id="titlenome" for="for_nome">Nome:</label>
-                    <input id="for_nome" type="text" style="display: inline-block;" oninput="alterarValor('for_nome');ajustarTexto('for_nome', 36)">
+                    <input id="for_nome" type="text" oninput="alterarValor('for_nome');ajustarTexto('for_nome', 36)">
                     
                     <label id="titlenome" for="for_cargo">Cargo:</label>
-                    <input id="for_cargo" type="text" style="display: inline-block;" oninput="alterarValor('for_cargo');ajustarTexto('for_cargo', 24)">
+                    <input id="for_cargo" type="text" oninput="alterarValor('for_cargo');ajustarTexto('for_cargo', 24)">
                     
                     <label for="for_celular">Telefone Móvel:</label>
-                    <input type="tel" name="Celular" id="for_celular" style="display: inline-block;font-family: 'Archivo', sans-serif;" oninput="formatarCelular(this);alterarValor('for_celular');imagemcelular('imgtelefone')">
+                    <input type="tel" name="Celular" id="for_celular" oninput="formatarCelular(this);alterarValor('for_celular');imagemcelular('imgtelefone')">
                     
                     <label for="for_telefone">Telefone Fixo:</label>
-                    <input type="tel" name="telefone" id="for_telefone" style="font-family: 'Archivo', sans-serif;" oninput="formatarTelefone(this);alterarValor('for_telefone');imagemcelular('imgtelefone')">
+                    <input type="tel" name="telefone" id="for_telefone" oninput="formatarTelefone(this);alterarValor('for_telefone');imagemcelular('imgtelefone')">
                     
                     <label for="for_texto_filial">Nome da Filial:</label>
-                    <input id="for_texto_filial" type="text" style="display: inline-block; font-family: 'Archivo', sans-serif;" oninput="alterarValor('for_texto_filial')">
+                    <input id="for_texto_filial" type="text" oninput="alterarValor('for_texto_filial')">
                     
                     <label for="for_filial">Empresa:</label>
                     <select name="filial" id="for_filial" oninput="alterarFilial()">
@@ -149,7 +184,7 @@
                     </select>
                     
                     <button class="btn btn-outline-danger" id="btndownload" onclick="event.preventDefault();download('tabela','for_nome')">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 15">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="15" fill="currentColor" class="bi bi-download" viewBox="0 0 16 15">
                             <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"></path>
                             <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"></path>
                         </svg>
@@ -175,7 +210,7 @@
                                 <p class="numeros" id="for_celular" style="margin: 0%;"></p>
                             </div>
                             
-                            <p id="for_texto_filial" style="margin: 0; font-family: 'Archivo-medium'; font-size: 18px; margin-top: 28px; text-align: center;"></p>
+                            <p id="for_texto_filial" style="margin: 0; font-family: 'Archivo-bold'; font-size: 22px; margin-top: 0px; text-align: left;"></p>
                             
                         </td>
                     </tr>
@@ -202,9 +237,9 @@
             document.getElementById('tabela').style.color = '#002469'
             document.querySelector("table #for_cargo").style.marginTop = '8px'
             document.querySelector("table #for_cargo").style.color = '#002469'
-            document.querySelector("#NomeCargo").style.marginTop = '42px'
+            document.querySelector("#NomeCargo").style.marginTop = '65px' 
             document.querySelector("#NomeCargo").style.marginLeft = '0.5px'
-            document.querySelector("#CelularTelefone").style.marginTop = '33px'
+            document.querySelector("#CelularTelefone").style.marginTop = '55px' 
             document.querySelector("table #for_celular").style.fontSize = '18px'
             document.querySelector("table #for_telefone").style.fontSize = '18px'
             break;
@@ -220,7 +255,7 @@
             document.getElementById('imgtelefone').style.maxWidth = "36px"
             document.getElementById('tdDados').style.width = '478px'
             document.querySelector("table #for_cargo").style.color = 'black'
-            document.querySelector("#NomeCargo").style.marginTop = '52px'
+            document.querySelector("#NomeCargo").style.marginTop = '75px' 
             document.querySelector("#CelularTelefone").style.marginLeft = '0px'
             document.querySelector("table #for_celular").style.fontFamily = 'Archivo-medium'
             document.querySelector("table #for_telefone").style.fontFamily = 'Archivo-medium'
@@ -270,7 +305,6 @@
         document.querySelector("table #"+valor).innerHTML = novoTexto
     }
 
-
     function download(id, id_nomeIMG) {
         var tabela = document.getElementById(id);
         var nome = document.getElementById(id_nomeIMG).value;
@@ -278,7 +312,7 @@
         var selectedOption = filial.options[filial.selectedIndex].value;
 
         html2canvas(tabela, { scale: 1, width: 875, height: 292 }).then((canvas) => {
-            var image = canvas.toDataURL("image/png", 1.0); // Converte o canvas em uma imagem JPEG com qualidade 1.0 (máxima)
+            var image = canvas.toDataURL("image/png", 1.0); 
             var link = document.createElement("a");
             link.href = image;
             link.download = nome + ".png";
@@ -287,7 +321,7 @@
     }
 
     function formatarCelular(input) {
-        let digitos = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+        let digitos = input.value.replace(/\D/g, ''); 
         
         if (digitos.length == 0) {
             input.value = '';
@@ -304,7 +338,7 @@
     }
 
     function formatarTelefone(input) {
-        let digitos = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+        let digitos = input.value.replace(/\D/g, ''); 
 
         if (digitos.length == 0) {
             input.value = '';
@@ -327,15 +361,15 @@
 
     function ajustarTexto(id, tamanhofonte) {
         var caixa = document.querySelector("table #" + id);
-        var fontSize = tamanhofonte; // Tamanho inicial da fonte
+        var fontSize = tamanhofonte; 
 
         caixa.style.fontSize = fontSize + 'px';
 
-        // Ajusta o tamanho da fonte até que o texto caiba na caixa
         while (caixa.scrollWidth > caixa.clientWidth && fontSize > 10) {
-            fontSize -= 1; // Diminui o tamanho da fonte
+            fontSize -= 1; 
             caixa.style.fontSize = fontSize + 'px';
         }
     }
 </script>
 </html>
+
